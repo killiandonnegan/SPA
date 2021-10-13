@@ -1,0 +1,1135 @@
+<!--References: John Keating-->
+<!--Using handlebars framework-->
+<!--Tested with lastest version of Google Chome on a Windows 10 computer-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CS230 Assignment 7</title>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/all.css" rel="stylesheet" type="text/css"/>  
+</head>
+<body>
+  <div class="container"> <!-- class="table-responsive text-nowrap (play with Bootstrap attributes for look you want) -->
+<h1><a class="breadcrumb-item text-dark" href="/">Mobile Phone Store Online Database</a> <span class="badge badge-secondary" id="databaseFilterNotice"></span></h1>
+
+     <!-- CUSTOMER /////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <h2><a class="breadcrumb-item text-dark" href="/">Customer</a> <span class="badge badge-secondary" id="databaseFilterNotice"></span></h2>
+    <!-- Search the Results (Customer) Table  -->
+    <!-- Customer Table -->
+
+
+    <table class="table table-hover table-striped" id="customersList">
+      <thead>
+        <tr>  <!-- <tr class="d-flex"> -->
+          <th style="width: 1%">Title</th>
+          <th style="width: 1%">First Name</th>
+          <th style="width: 1%">Last Name</th>
+          <th style="width: 1%">Mobile</th>
+          <th style="width: 1%">Email</th>
+          <th style="width: 1%">Home Address Line 1</th>
+          <th style="width: 1%">Home Address Line 2</th>
+          <th style="width: 1%">Home Address Town</th>
+          <th style="width: 1%">Home Address County</th>
+          <th style="width: 1%">Home Address Eircode</th>
+          <th style="width: 1%">Shipping Address Line 1</th>
+          <th style="width: 1%">Shipping Address Line 2</th>
+          <th style="width: 1%">Shipping Address Town</th>
+          <th style="width: 1%">Shipping Address County</th>
+          <th style="width: 30%">Shipping Address Eircode</th>
+          <th class = "text-center" style="width:15%">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each results}}
+        <tr >
+          <td style="width: 1%">"{{title}}"</td>  
+          <td style="width: 1%">"{{firstname}}"</td>    
+          <td style="width: 1%">"{{surname}}"</td>
+          <td style="width: 1%">"{{mobile}}"</td>
+          <td style="width: 1%">"{{email}}"</td>
+          <td style="width: 1%">"{{homeaddline1}}"</td>
+          <td style="width: 1%">"{{homeaddline2}}"</td>
+          <td style="width: 1%">"{{hometown}}"</td>
+          <td style="width: 1%">"{{homecounty}}"</td>
+          <td style="width: 1%">"{{homeeir}}"</td>
+          <td style="width: 1%">"{{shippingaddline1}}"</td>
+          <td style="width: 1%">"{{shippingaddline2}}"</td>
+          <td style="width: 1%">"{{shippingtown}}"</td>
+          <td style="width: 1%">"{{shippingcounty}}"</td>
+          <td style="width: 1%">"{{shippingeir}}"</td>
+          <td class="text-right" style="width: 15%">
+            <a href="javascript:void(0);" class="btn btn-sm btn-info update" data-id="{{ id }}"  data-title="{{ title }}" data-firstname="{{ firstname }}" data-surname=""="{{ surname }}" data-mobile="{{ mobile }}" data-email="{{ email }}" data-homeaddline1 = "{{ homraddline1 }}"
+            data-homeaddline2 = "{{homeaddline2}}" data=hometown = "{{ hometown }}" data-homecounty = "{{ homecounty }}" data-homeeir = "{{ homeeir }}" data-shippingaddline1 = "{{ shippingaddline1}}" data=shippingaddline2 = "{{ shippingaddline2 }}"
+            data-shippingtown = "{{shippingtown}}" data-shippingtown = "{{ shippingtown }}" data-shippingcounty = "{{ shippingcounty }}" data-shippingeir = "{{ shippingeir }}">Update</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}" data-title="{{ title }}" data-firstname="{{ firstname }}" data-surname="{{ surname }}" data-mobile="{{ mobile }}" data-email="{{ email }}" data-homeaddline1 = "{{ homraddline1 }}"
+            data-homeaddline2 = "{{homeaddline2}}" data=hometown = "{{ hometown }}" data-homecounty = "{{ homecounty }}" data-homeeir = "{{ homeeir }}" data-shippingaddline1 = "{{ shippingaddline1}}" data=shippingaddline2 = "{{ shippingaddline2 }}"
+            data-shippingtown = "{{shippingtown}}" data-shippingtown = "{{ shippingtown }}" data-shippingcounty = "{{ shippingcounty }}" data-shippingeir = "{{ shippingeir }}">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    
+        <!-- Database Search -->
+    <div class="input-group mb-3">
+        <!-- Add Quotation Button  -->
+        <button class="btn btn-primary mr-5" data-toggle="modal" data-target="#addModal">Add</button>
+        <!-- Search the Database (Quotations) -->
+        <div class="input-group-prepend">
+             <select class="custom-select" id="databaseSearchSelect">
+                <option value="firstname" selected>First Name</option>
+                <option value="surname">Last Name</option>
+                <option value="mobile">Mobile</option>
+                <option value="email">Email</option>
+
+                <option value="homeaddline1">Home Address Line 1</option>
+                <option value="homeaddline2">Home Address Line 2</option>
+                <option value="hometown">Home Address Town</option>
+                <option value="homecounty">Home Address County</option>
+                <option value="homeeir">Home Address Eircode</option>
+
+                <option value="shippingaddline1">Shipping Address Line 1</option>
+                <option value="shippingaddline2">Shipping Address Line 2</option>
+                <option value="shippingtown">Shipping Address Town</option>
+                <option value="shippingcounty">Shipping Address County</option>
+                <option value="shippingeir">Shipping Address Eircode</option>
+            </select>
+        </div>
+        <input class="form-control py-2 border-left-0 border" type="search" placeholder="Find in Database ..." id="databaseSearchFilter"> 
+        <div class="input-group-append">
+            <button class="btn btn-success" type="button" id="databaseSearch">Find</button>
+        </div>
+    </div>
+
+    <!-- Modal Add Quotation-->
+    <form id="addForm" action="/customers" method="POST">
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Add New Customer</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+                                <div class="form-group">
+                   <input type="text" name="title" class="form-control" placeholder="Title" required>
+               </div>
+
+               <div class="form-group">
+                   <input type="text" name="firstname" class="form-control" placeholder="First Name" required>
+               </div>
+               <div class="form-group">
+                   <input type="text" name="surname" class="form-control" placeholder="Last name" required>
+               </div>
+             <div class="form-group">
+                   <input type="text" name="mobile" class="form-control" placeholder="Mobile" required>
+               </div>
+                            <div class="form-group">
+                   <input type="text" name="email" class="form-control" placeholder="Email" required>
+               </div>
+                            <div class="form-group">
+                   <input type="text" name="homeaddline1" class="form-control" placeholder="Home Address Line 1" required>
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="homeaddline2" class="form-control" placeholder="Home Address Line 2">
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="hometown" class="form-control" placeholder="Home Address Town" required>
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="homecounty" class="form-control" placeholder="Home Address County" required>
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="homeeir" class="form-control" placeholder="Home Address Eircode">
+               </div>
+                    
+                                           <div class="form-group">
+                   <input type="text" name="shippingaddline1" class="form-control" placeholder="Shipping Address Line 1" required>
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="shippingaddline2" class="form-control" placeholder="Shipping Address Line 2">
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="shippingtown" class="form-control" placeholder="Shipping Address Town" required>
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="shippingcounty" class="form-control" placeholder="Shipping Address County" required>
+               </div>
+                                           <div class="form-group">
+                   <input type="text" name="shippingeir" class="form-control" placeholder="Shipping Address Eircode">
+               </div>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save</button>
+             </div>
+           </div>
+         </div>
+        </div>
+    </form>
+
+    <!-- Modal Update Quotation -->
+    <form id="updateForm" action="/customers" method="PUT"> <!-- we can't PUT with HTML form - this is just an attribute  picked up by AjAX -->
+       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Customer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                             <div class="form-group">
+                  <input type="text" name="title" class="form-control title" placeholder="Title" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" name="firstname" class="form-control firstname" placeholder="First Name" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" name="surname" class="form-control lastname" placeholder="Last Name" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="mobile" class="form-control mobile" placeholder="Mobile" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="email" class="form-control email" placeholder="Email" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="homeaddline1" class="form-control homeaddline1" placeholder="Home Address Line 1" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="homeaddline2" class="form-control homeaddline2" placeholder="Home Address Line 2" >
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="hometown" class="form-control hometown" placeholder="Home Address Town" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="homecounty" class="form-control homecounty" placeholder="Home Address County" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="homeeir" class="form-control homeeir" placeholder="Home Address Eircode">
+              </div>
+
+                                          <div class="form-group">
+                  <input type="text" name="shippingaddline1" class="form-control shippingaddline1" placeholder="Shipping Address Line 1" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="shippingaddline2" class="form-control shippingaddline2" placeholder="Shipping Address Line 2" >
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="shippingtown" class="form-control shippingtown" placeholder="Shipping Address Town" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="shippingcounty" class="form-control shippingcounty" placeholder="Shipping Address County" required>
+              </div>
+                            <div class="form-group">
+                  <input type="text" name="shippingeir" class="form-control shippingeir" placeholder="Shipping Address Eircode" >
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="customerId" class="id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+    </form>
+
+    <!-- Modal Delete customer-->
+    <form id="deleteForm" action="/customers" method="DELETE"> <!-- we can't DELETE with HTML form - this is just an attribute  picked up by AjAX -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Delete Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   </div>
+                   <div class="modal-body">
+                        <strong>Are you sure you want to delete this Customer?</strong>
+                   </div>
+                   <div class="modal-footer">
+                        <input type="hidden" name="customerId" class="form-control id" required>
+                        <button type="submit" class="btn btn-success">Delete</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Phone</h2>
+    <!-- yeee ////////////////////////////////////////////////// -->
+        <table class="table table-hover table-striped" id="phonesList">
+      <thead>
+        <tr>  <!-- <tr class="d-flex"> -->
+          <th style="width: 1%">Manufacturer</th>
+          <th style="width: 1%">Model</th>
+          <th style="width: 30%">Price</th>
+          <th class = "text-center" style="width:15%">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each results2}}
+        <tr >
+          <td style="width: 1%">"{{manufacturer}}"</td>  
+          <td style="width: 1%">"{{model}}"</td>    
+          <td style="width: 1%">"{{price}}"</td>
+          <td class="text-right" style="width: 15%">
+            <a href="javascript:void(0);" class="btn btn-sm btn-info update" data-id="{{ id }}"  data-manufacturer="{{ manufacturer }}" data-model="{{ model }}" data-price="{{ price }}">Update</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}"  data-manufacturer="{{ manufacturer }}" data-model="{{ model }}" data-price="{{ price }}">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+            <!-- Database Search -->
+    <div class="input-group mb-3">
+        <!-- Add Quotation Button  -->
+        <button class="btn btn-primary mr-5" data-toggle="modal" data-target="#addModal2">Add</button>
+        <!-- Search the Database (Quotations) -->
+        <div class="input-group-prepend">
+             <select class="custom-select" id="databaseSearchSelect2">
+                <option value="manufacturer" selected>Manufacturer</option>
+                <option value="model">Model</option>
+                <option value="price">Price</option> 
+            </select>
+        </div>
+        <input class="form-control py-2 border-left-0 border" type="search" placeholder="Find in Database ..." id="databaseSearchFilter2"> 
+        <div class="input-group-append">
+            <button class="btn btn-success" type="button" id="databaseSearch2">Find</button>
+        </div>
+    </div>
+
+
+    <!-- Modal Add Quotation-->
+
+    <form id="addForm2" action="/phones" method="POST">
+        <div class="modal fade" id="addModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Add New Phone</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+                                <div class="form-group">
+                   <input type="text" name="manufacturer" class="form-control" placeholder="Manufacturer" required>
+               </div>
+
+               <div class="form-group">
+                   <input type="text" name="model" class="form-control" placeholder="Model" required>
+               </div>
+               <div class="form-group">
+                   <input type="text" name="price" class="form-control" placeholder="Price" required>
+               </div>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save</button>
+             </div>
+           </div>
+         </div>
+        </div>
+    </form> 
+
+
+    <!-- Modal Update Quotation -->
+
+    <form id="updateForm2" action="/phones" method="PUT">
+       <div class="modal fade" id="updateModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Phone</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                             <div class="form-group">
+                  <input type="text" name="manufacturer" class="form-control manufacturer" placeholder="Manufacturer" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" name="model" class="form-control model" placeholder="Model" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" name="price" class="form-control price" placeholder="Price" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="phoneId" class="id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+    </form>
+
+    
+        <!-- Modal Delete phone-->
+
+    <form id="deleteForm2" action="/phones" method="DELETE">
+        <div class="modal fade" id="deleteModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Delete Phone</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   </div>
+                   <div class="modal-body">
+                        <strong>Are you sure you want to delete this Phone?</strong>
+                   </div>
+                   <div class="modal-footer">
+                        <input type="hidden" name="phoneId" class="form-control id" required>
+                        <button type="submit" class="btn btn-success">Delete</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </form> 
+<br>
+
+
+
+
+<br>
+<br>
+
+
+<h2> Order </h2>
+
+    <table class="table table-hover table-striped" id="ordersList">
+      <thead>
+        <tr>  <!-- <tr class="d-flex"> -->
+          <th style="width: 1%">Email</th>
+          <th style="width: 30%">List</th>
+          <th class = "text-center" style="width:15%">Options</th>
+        </tr>
+      </thead>
+
+            <tbody>
+        {{#each results3}}
+        <tr >
+          <td style="width: 1%">"{{email}}"</td>  
+          <td style="width: 1%">"{{list}}"</td>    
+          <td class="text-right" style="width: 15%">
+            <a href="javascript:void(0);" class="btn btn-sm btn-info update" data-id="{{ id }}"  data-email2="{{ email }}" data-list="{{ list }}">Update</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ id }}"  data-email2="{{ email }}" data-list="{{ list }}">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+      </table>
+
+                 <!-- Database Search -->
+    <div class="input-group mb-3">
+        <!-- Add Quotation Button  -->
+        <button class="btn btn-primary mr-5" data-toggle="modal" data-target="#addModal3">Add</button>
+        <!-- Search the Database (Quotations) -->
+        <div class="input-group-prepend">
+             <select class="custom-select" id="databaseSearchSelect3">
+                <option value="email" selected>Email</option>
+                <option value="list">List</option>
+            </select>
+        </div>
+        <input class="form-control py-2 border-left-0 border" type="search" placeholder="Find in Database ..." id="databaseSearchFilter3"> 
+        <div class="input-group-append">
+            <button class="btn btn-success" type="button" id="databaseSearch3">Find</button>
+        </div>
+    </div>
+
+        <!-- Modal Add Quotation-->
+
+    <form id="addForm3" action="/orders" method="POST">
+        <div class="modal fade" id="addModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Add New Order</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+                                <div class="form-group">
+                   <input type="text" name="email" class="form-control" placeholder="Email" required>
+               </div>
+               <div class="form-group">
+                   <input type="text" name="list" class="form-control" placeholder="List" required>
+               </div>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save</button>
+             </div>
+           </div>
+         </div>
+        </div>
+    </form> 
+
+
+    <!-- Modal Update Quotation -->
+
+    <form id="updateForm3" action="/orders" method="PUT">
+       <div class="modal fade" id="updateModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                             <div class="form-group">
+                  <input type="text" name="email" class="form-control manufacturer" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" name="list" class="form-control model" placeholder="List" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="orderId" class="id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+    </form>
+
+    
+        <!-- Modal Delete phone-->
+    <form id="deleteForm3" action="/orders" method="DELETE">
+        <div class="modal fade" id="deleteModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Delete Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   </div>
+                   <div class="modal-body">
+                        <strong>Are you sure you want to delete this Order?</strong>
+                   </div>
+                   <div class="modal-footer">
+                        <input type="hidden" name="orderId" class="form-control id" required>
+                        <button type="submit" class="btn btn-success">Delete</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </form> 
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Operation Successful Alert Modal -->
+    <div class="modal fade" id="successAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="alert alert-success" role="alert">
+                <strong>Oh Great!</strong> RESTful Operation was Successful!
+            </div>
+        </div>
+    </div>
+
+    <!-- Operation Unsuccessful Alert Modal -->
+    <div class="modal fade" id="errorAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="alert alert-danger" role="alert">
+                <strong>Oh No!</strong> RESTful Operation was Unsuccessful!
+            </div>
+        </div>
+    </div>
+ </div>
+ 
+<script src="/assets/js/jquery-3.5.0.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function(){
+        //
+        // Handle Add Modal form submit using AJAX PUT
+        //
+        var addForm = $("#addForm");
+        addForm.submit(function(e){
+            e.preventDefault(); // prevent handling the normal form submit click!
+            $.ajax({
+                type: addForm.attr('method'),
+                url:  addForm.attr('action'),
+                data: addForm.serialize(), // get data from form!
+                success: function (data) {
+                    console.log('Update successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#addModal').modal('hide');
+        });
+
+
+     var addForm2 = $("#addForm2");
+        addForm2.submit(function(e){
+            e.preventDefault(); // prevent handling the normal form submit click!
+            $.ajax({
+                type: addForm2.attr('method'),
+                url:  addForm2.attr('action'),
+                data: addForm2.serialize(), // get data from form!
+                success: function (data) {
+                    console.log('Update successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#addModal2').modal('hide');
+        });
+
+
+          var addForm3 = $("#addForm3");
+        addForm3.submit(function(e){
+            e.preventDefault(); // prevent handling the normal form submit click!
+            $.ajax({
+                type: addForm3.attr('method'),
+                url:  addForm3.attr('action'),
+                data: addForm3.serialize(), // get data from form!
+                success: function (data) {
+                    console.log('Update successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#addModal3').modal('hide');
+        });
+     
+
+
+
+
+
+
+
+        //
+        // Set up the Update Modal - It is shown, and data passed, via button click
+        //
+        $('#customersList').on('click','.update',function(){
+            var customer_id = $(this).data('id');
+            var customer_title = $(this).data('title');
+            var customer_firstname = $(this).data('firstname');
+            var customer_surname = $(this).data('surname');
+            var customer_mobile = $(this).data('mobile');
+            var customer_email = $(this).data('email');
+            var customer_homeaddline1 = $(this).data('homeaddline1');
+            var customer_homeaddline2 = $(this).data('homeaddline2');
+            var customer_hometown = $(this).data('hometown');
+            var customer_homecounty = $(this).data('homecounty');
+            var customer_homeeir = $(this).data('homeeir');
+            var customer_shippingaddline1 = $(this).data('shippingaddline1');
+            var customer_shippingaddline2 = $(this).data('shippingaddline2');
+            var customer_shippingtown = $(this).data('shippingtown');
+            var customer_shippingcounty = $(this).data('shippingcounty');
+            var customer_shippingeir = $(this).data('shippingeir');
+
+            // alert (quotation_id+": "+ quotation_quote+" "+quotation_author);
+            $('#updateModal').modal('show');
+            $('.id').val(customer_id);
+            $('.title').val(customer_title);
+            $('.firstname').val(customer_firstname);
+            $('.surname').val(customer_surname);
+            $('.mobile').val(customer_mobile);
+            $('.email').val(customer_email);
+            $('.homeaddline1').val(customer_homeaddline1);
+            $('.homeaddline2').val(customer_homeaddline2);
+            $('.hometown').val(customer_hometown);
+            $('.hommecounty').val(customer_homecounty);
+            $('.homeeir').val(customer_homeeir);
+            $('.shippingaddline1').val(customer_shippingaddline1);
+            $('.shippingaddline2').val(customer_shippingaddline2);
+            $('.shippingtown').val(customer_shippingtown);
+            $('.shippingcounty').val(customer_shippingcounty);
+            $('.shippingeir').val(customer_shippingeir);
+        });
+
+
+        $('#phonesList').on('click','.update',function(){
+            var phone_id = $(this).data('id');
+            var phone_manufacturer = $(this).data('manufacturer');
+            var phone_model = $(this).data('model');
+            var phone_price = $(this).data('price');
+
+            // alert (quotation_id+": "+ quotation_quote+" "+quotation_author);
+            $('#updateModal2').modal('show');
+            $('.id').val(phone_id);
+            $('.manufacturer').val(phone_manufacturer);
+            $('.model').val(phone_model);
+            $('.price').val(phone_price);
+        });
+
+      $('#ordersList').on('click','.update',function(){
+            var order_id = $(this).data('id');
+            var order_email = $(this).data('email');
+            var order_list = $(this).data('list');
+
+            // alert (quotation_id+": "+ quotation_quote+" "+quotation_author);
+            $('#updateModal3').modal('show');
+            $('.id').val(order_id);
+            $('.email').val(order_email);
+            $('.list').val(order_list);
+        });
+
+
+        //
+        // Handle Update Modal form submit using AJAX PUT
+        //
+        var updateForm = $("#updateForm");
+        updateForm.submit(function(e){
+            e.preventDefault(); // prevent handling the normal form submit click!
+            var id = updateForm.find('input[name="customerId"]').val();    
+            $.ajax({
+                type: updateForm.attr('method'),
+                url:  updateForm.attr('action')+"/"+id,
+                data: updateForm.serialize(), // get data from form!
+                success: function (data) {
+                    console.log('Update successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#updateModal').modal('hide');
+        });
+
+        var updateForm2 = $("#updateForm2");
+        updateForm2.submit(function(e){
+            e.preventDefault(); // prevent handling the normal form submit click!
+            var id = updateForm2.find('input[name="phoneId"]').val();    
+            $.ajax({
+                type: updateForm2.attr('method'),
+                url:  updateForm2.attr('action')+"/"+id,
+                data: updateForm2.serialize(), // get data from form!
+                success: function (data) {
+                    console.log('Update successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#updateModal2').modal('hide');
+        }); 
+
+               
+               /* var updateForm3 = $("#updateForm3");
+        updateForm3.submit(function(e){
+            e.preventDefault(); // prevent handling the normal form submit click!
+            var id = updateForm3.find('input[name="orderId"]').val();    
+            $.ajax({
+                type: updateForm3.attr('method'),
+                url:  updateForm3.attr('action')+"/"+id,
+                data: updateForm3.serialize(), // get data from form!
+                success: function (data) {
+                    console.log('Update successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#updateModal3').modal('hide');
+        }); 
+*/
+
+        //
+        // Set up the Delete Modal - It is shown, and data passed, via button click
+        //
+        $('#customersList').on('click','.delete',function(){
+            var customer_id = $(this).data('id');
+            $('#deleteModal').modal('show');
+            $('.id').val(customer_id);
+        });
+
+
+
+        $('#phonesList').on('click','.delete',function(){
+            var phone_id = $(this).data('id');
+            $('#deleteModal2').modal('show');
+            $('.id').val(phone_id);
+        });
+
+
+        $('#ordersList').on('click','.delete',function(){
+            var order_id = $(this).data('id');
+            $('#deleteModal3').modal('show');
+            $('.id').val(order_id);
+        });
+
+
+
+        
+
+
+        //
+        // Handle Delete Modal form submit using AJAX DELETE
+        //
+        var deleteForm = $("#deleteForm");
+        deleteForm.submit(function(e){
+            // make everything look like a Single Page Application
+            // consuming the RESTful API routes based on user selection
+            e.preventDefault();  // prevent handling the normal form submit click!
+            var id = deleteForm.find('input[name="customerId"]').val();   
+            $.ajax({
+                type: deleteForm.attr('method'),
+                url:  deleteForm.attr('action')+"/"+id,
+                success: function (data) {
+                    console.log('Deletion successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#deleteModal').modal('hide');
+        });
+
+
+        var deleteForm2 = $("#deleteForm2");
+        deleteForm2.submit(function(e){
+            // make everything look like a Single Page Application
+            // consuming the RESTful API routes based on user selection
+            e.preventDefault();  // prevent handling the normal form submit click!
+            var id = deleteForm2.find('input[name="phoneId"]').val();   
+            $.ajax({
+                type: deleteForm2.attr('method'),
+                url:  deleteForm2.attr('action')+"/"+id,
+                success: function (data) {
+                    console.log('Deletion successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#deleteModal2').modal('hide');
+        });
+
+
+               var deleteForm3 = $("#deleteForm3");
+        deleteForm3.submit(function(e){
+            // make everything look like a Single Page Application
+            // consuming the RESTful API routes based on user selection
+            e.preventDefault();  // prevent handling the normal form submit click!
+            var id = deleteForm3.find('input[name="orderId"]').val();   
+            $.ajax({
+                type: deleteForm3.attr('method'),
+                url:  deleteForm3.attr('action')+"/"+id,
+                success: function (data) {
+                    console.log('Deletion successful!');
+                    // make a timed Bootstrap Alert on Success
+                    // then re-direct to "/"
+                    $('#successAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+                error: function (data) {
+                    console.log('An error occurred.');
+                    // make a timed Bootstrap Alert on Error
+                    // then re-direct to "/"
+                    $('#errorAlert').modal('show');
+                    var timer = setTimeout(function() {
+                        $(location).attr('href', '/')
+                    }, 3000);
+                },
+            });
+            $('#deleteModal3').modal('hide');
+        });
+
+
+        //
+        // Search: Field Selection
+        //
+          $("#fieldSearchSelect").on('change',function() {
+            var k = $(this).val();
+            if (k == 1) {
+                $("#tableFilter").attr("placeholder", "Filter customer list by title ...");
+            } else if(k==2){
+                $("#tableFilter").attr("placeholder", "Filter customer list by first name ...");
+            }
+            else if(k==3){
+                $("#tableFilter").attr("placeholder", "Filter customer list by last name ...");
+            }
+            $("#tableFilter").val("");
+            $("#tableFilter").keyup();
+        }); 
+
+            $("#fieldSearchSelect2").on('change',function() {
+            var k = $(this).val();
+            if (k == 1) {
+                $("#tableFilter2").attr("placeholder", "Filter customer list by title ...");
+            } else if(k==2){
+                $("#tableFilter2").attr("placeholder", "Filter customer list by first name ...");
+            }
+            else if(k==3){
+                $("#tableFilter2").attr("placeholder", "Filter customer list by last name ...");
+            }
+            $("#tableFilter2").val("");
+            $("#tableFilter2").keyup();
+        }); 
+
+        
+                    $("#fieldSearchSelect3").on('change',function() {
+            var k = $(this).val();
+            if (k == 1) {
+                $("#tableFilter3").attr("placeholder", "Filter customer list by title ...");
+            } else if(k==2){
+                $("#tableFilter3").attr("placeholder", "Filter customer list by first name ...");
+            }
+            else if(k==3){
+                $("#tableFilter3").attr("placeholder", "Filter customer list by last name ...");
+            }
+            $("#tableFilter3").val("");
+            $("#tableFilter3").keyup();
+        }); 
+        //
+        // Search: Table Filter
+        //
+        $("#tableFilter").keyup(function(){
+            var filter = $(this).val().toUpperCase(); 
+            $("#customersList").find('tr').each(function(rows) {
+                if (rows !==  0) {
+                    var row = $(this);
+                    var searching = "";
+                    
+                    if ($("#fieldSearchSelect").val() == 1) {
+                        searching = row.find("td:first").text().toUpperCase();
+                    }  else  {
+                        searching = row.find("td:first + td").text().toUpperCase();
+                    }
+                    if (searching.indexOf(filter) != -1) {               
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            });
+        });
+
+        $("#tableFilter2").keyup(function(){
+            var filter2 = $(this).val().toUpperCase(); 
+            $("#phonesList").find('tr').each(function(rows) {
+                if (rows !==  0) {
+                    var row = $(this);
+                    var searching = "";
+                    
+                    if ($("#fieldSearchSelect2").val() == 1) {
+                        searching = row.find("td:first").text().toUpperCase();
+                    }  else  {
+                        searching = row.find("td:first + td").text().toUpperCase();
+                    }
+                    if (searching.indexOf(filter2) != -1) {               
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            });
+        });
+
+
+        $("#tableFilter3").keyup(function(){
+            var filter3 = $(this).val().toUpperCase(); 
+            $("#ordersList").find('tr').each(function(rows) {
+                if (rows !==  0) {
+                    var row = $(this);
+                    var searching = "";
+                    
+                    if ($("#fieldSearchSelect3").val() == 1) {
+                        searching = row.find("td:first").text().toUpperCase();
+                    }  else  {
+                        searching = row.find("td:first + td").text().toUpperCase();
+                    }
+                    if (searching.indexOf(filter2) != -1) {               
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            });
+        });
+        
+        //
+        // Search: Database search
+        //
+        $("#databaseSearch").on('click',function() {
+            var search = $("#databaseSearchFilter").val().replace(/[|&;$%@"<>()+,^  ]/g, "");
+            if (search) {
+                $(location).attr('href', '/'+$("#databaseSearchSelect").val()+'/'+search);
+            } else {
+                $(location).attr('href', '/');
+            }
+        });
+
+                $("#databaseSearch2").on('click',function() {
+            var search = $("#databaseSearchFilter2").val().replace(/[|&;$%@"<>()+,^  ]/g, "");
+            if (search) {
+                $(location).attr('href', '/'+$("#databaseSearchSelect2").val()+'/'+search);
+            } else {
+                $(location).attr('href', '/');
+            }
+        });
+
+                $("#databaseSearch3").on('click',function() {
+            var search = $("#databaseSearchFilter3").val().replace(/[|&;$%@"<>()+,^  ]/g, "");
+            if (search) {
+                $(location).attr('href', '/'+$("#databaseSearchSelect3").val()+'/'+search);
+            } else {
+                $(location).attr('href', '/');
+            }
+        });
+
+        //
+        //  If there is a database filter then add a badge
+        //
+        if ($(location).attr('pathname') !== '/') {
+           $('#databaseFilterNotice').text("("+$(location).attr('pathname')+")");
+        }
+
+                if ($(location).attr('pathname') !== '/') {
+           $('#databaseFilterNotice2').text("("+$(location).attr('pathname')+")");
+        }
+
+                        if ($(location).attr('pathname') !== '/') {
+           $('#databaseFilterNotice3').text("("+$(location).attr('pathname')+")");
+        }
+    });
+</script>
+</body>
+</html>

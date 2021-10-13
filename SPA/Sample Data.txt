@@ -1,0 +1,182 @@
+[
+  {
+    "_id": "60941148e61b1d0230927edb",
+    "title": "Mr",
+    "firstname": "Bob",
+    "surname": "Smith",
+    "mobile": "0831234567",
+    "email": "bobsmith@here.com",
+    "homeaddline1": "123",
+    "homeaddline2": "Yellow Road",
+    "hometown": "Maynooth",
+    "homecounty": "Kildare",
+    "homeeir": "AB123",
+    "shippingaddline1": "123",
+    "shippingaddline2": "Yellow Road",
+    "shippingtown": "Maynooth",
+    "shippingcounty": "Kildare",
+    "shippingeir": "AB123",
+    "createdAt": "2021-05-06T15:54:48.357Z",
+    "updatedAt": "2021-05-06T15:54:48.357Z",
+    "__v": 0
+  },
+  {
+    "_id": "60941167e61b1d0230927edc",
+    "title": "Ms",
+    "firstname": "Linda",
+    "surname": "Smith",
+    "mobile": "0832461234",
+    "email": "lindasmith@here.com",
+    "homeaddline1": "123",
+    "homeaddline2": "Yellow Road",
+    "hometown": "Maynooth",
+    "homecounty": "Kildare",
+    "homeeir": "AB123",
+    "shippingaddline1": "123",
+    "shippingaddline2": "Yellow Road",
+    "shippingtown": "Maynooth",
+    "shippingcounty": "Kildare",
+    "shippingeir": "AB123",
+    "createdAt": "2021-05-06T15:55:19.532Z",
+    "updatedAt": "2021-05-06T15:55:19.532Z",
+    "__v": 0
+  },
+  {
+    "_id": "609411ffe61b1d0230927edd",
+    "title": "Mrs",
+    "firstname": "Jane",
+    "surname": "Bloggs",
+    "mobile": "0871234567",
+    "email": "janebloggs@here.com",
+    "homeaddline1": "12",
+    "homeaddline2": "Red Grove",
+    "hometown": "Malahide",
+    "homecounty": "Dublin",
+    "homeeir": "D1234",
+    "shippingaddline1": "12",
+    "shippingaddline2": "Red Grove",
+    "shippingtown": "Malahide",
+    "shippingcounty": "Dublin",
+    "shippingeir": "D1234",
+    "createdAt": "2021-05-06T15:57:51.985Z",
+    "updatedAt": "2021-05-06T15:57:51.985Z",
+    "__v": 0
+  },
+  {
+    "_id": "609412ece61b1d0230927ede",
+    "title": "Mr",
+    "firstname": "Joe",
+    "surname": "Bloggs",
+    "mobile": "0872213456",
+    "email": "joebloggs@here.com",
+    "homeaddline1": "12",
+    "homeaddline2": "Red Grove",
+    "hometown": "Malahide",
+    "homecounty": "Dublin",
+    "homeeir": "D1234",
+    "shippingaddline1": "12",
+    "shippingaddline2": "Red Grove",
+    "shippingtown": "Malahide",
+    "shippingcounty": "Dublin",
+    "shippingeir": "D1234",
+    "createdAt": "2021-05-06T16:01:48.829Z",
+    "updatedAt": "2021-05-06T16:01:48.829Z",
+    "__v": 0
+  }
+]
+
+
+
+
+
+[
+  {
+    "_id": "60941370e61b1d0230927edf",
+    "manufacturer": "Apple",
+    "model": "iPhone 12",
+    "price": "€1000",
+    "createdAt": "2021-05-06T16:04:00.211Z",
+    "updatedAt": "2021-05-06T16:04:00.211Z",
+    "__v": 0
+  },
+  {
+    "_id": "6094137de61b1d0230927ee0",
+    "manufacturer": "Apple",
+    "model": "iPhone X",
+    "price": "€900",
+    "createdAt": "2021-05-06T16:04:13.833Z",
+    "updatedAt": "2021-05-06T16:04:13.833Z",
+    "__v": 0
+  },
+  {
+    "_id": "60941385e61b1d0230927ee1",
+    "manufacturer": "Apple",
+    "model": "iPhone 11",
+    "price": "€950",
+    "createdAt": "2021-05-06T16:04:21.072Z",
+    "updatedAt": "2021-05-06T16:04:21.072Z",
+    "__v": 0
+  },
+  {
+    "_id": "60941398e61b1d0230927ee2",
+    "manufacturer": "Samsung",
+    "model": "Galaxy 10",
+    "price": "€1000",
+    "createdAt": "2021-05-06T16:04:40.788Z",
+    "updatedAt": "2021-05-06T16:04:40.788Z",
+    "__v": 0
+  }
+]
+
+
+
+
+
+[
+  {
+    "list": [
+      "iPhone 12",
+      "Galaxy 10"
+    ],
+    "_id": "6094161ae61b1d0230927ee8",
+    "email": "bobsmith@here.com",
+    "createdAt": "2021-05-06T16:15:22.147Z",
+    "updatedAt": "2021-05-06T16:15:22.147Z",
+    "__v": 0
+  },
+  {
+    "list": [
+      "iPhone X",
+      "Galaxy 10"
+    ],
+    "_id": "6094162ce61b1d0230927ee9",
+    "email": "lindasmith@here.com",
+    "createdAt": "2021-05-06T16:15:40.841Z",
+    "updatedAt": "2021-05-06T16:15:40.841Z",
+    "__v": 0
+  },
+  {
+    "list": [
+      "iPhone 12",
+      "iPhone X",
+      "iPhone 11"
+    ],
+    "_id": "60941642e61b1d0230927eea",
+    "email": "janebloggs@here.com",
+    "createdAt": "2021-05-06T16:16:02.552Z",
+    "updatedAt": "2021-05-06T16:18:14.024Z",
+    "__v": 0
+  },
+  {
+    "list": [
+      "iPhone 12"
+    ],
+    "_id": "6094165fe61b1d0230927eeb",
+    "email": "joebloggs@here.com",
+    "createdAt": "2021-05-06T16:16:31.115Z",
+    "updatedAt": "2021-05-06T16:16:31.115Z",
+    "__v": 0
+  }
+]
+
+
